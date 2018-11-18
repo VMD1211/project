@@ -53,6 +53,16 @@ private Connection con;
 		
 		return result >0;
 	}
+	
+	public boolean deleteTrans(int id) throws SQLException {
+		
+		String sql ="DELETE FROM transport where id = ?";
+		PreparedStatement statement = con.prepareStatement(sql);
+		statement.setInt(1, id);
+		
+		int result = statement.executeUpdate();
+		
+		return result >0;
+	}
+	
 }
-
-

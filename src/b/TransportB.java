@@ -48,6 +48,9 @@ private List<Transpost> list;
 		return transpost;
 	}
 	
-	
+	public Transpost deleteTrans(Transpost transpost)throws SQLException{
+		da.deleteTrans(transpost.getId());
+		return transpost;
+	}
 
 }
