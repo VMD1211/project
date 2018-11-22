@@ -37,7 +37,7 @@ public class UserFrame extends JFrame {
 	private MainFrame main;
 	private JTextField searchtxt;
 
-	private void initModel() throws SQLException{
+	public void initModel() throws SQLException{
 		model = transportB.getAllTrans();
 		table.setModel(model);
 	}

@@ -114,7 +114,7 @@ public class MainFrame extends JFrame {
 		passwordField.setBounds(166, 75, 139, 20);
 		panel.add(passwordField);
 		
-		JLabel lblIf = new JLabel("Don't have a Car Manager account ?");
+		JLabel lblIf = new JLabel("Create new Employee");
 		lblIf.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblIf.setBounds(10, 189, 253, 20);
 		panel.add(lblIf);
