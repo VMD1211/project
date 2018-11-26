@@ -31,19 +31,30 @@ public class TransportDA {
 	public List<Transpost> getAll() throws SQLException {
 		List<Transpost> transports = new ArrayList<Transpost>();
 
-		String sql = "SELECT id,name,bienso,loai,time_in  FROM transport";
+		String sql = "SELECT id,name,bienso,loai,time_in,time_out,ThanhToan  FROM transport";
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
 
 		while (rs.next()) {
-			Transpost transpost = new Transpost(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getTime(5));
+			Transpost transpost = new Transpost(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getTime(5), rs.getTime(6), rs.getInt(7));
 			transports.add(transpost);
 		}
 		
 
 		return transports;
 	}
+	
+	public boolean getTrans(int id) throws SQLException {
 
+		String sql = "Select id, name, bienso, loai, time_in FROM transport where id = ?";
+		PreparedStatement statement = con.prepareStatement(sql);
+		statement.setInt(1, id);
+
+		int result = statement.executeUpdate();
+
+		return result > 0;
+	}
+	
 	public boolean insertTrans(int id, String name, String bienso, String loai, Time timeIn) throws SQLException {
 
 		String sql = "INSERT INTO transport (`name`,`bienso`,`loai`,`time_in`) VALUES (?,?,?,?)";
@@ -53,17 +64,6 @@ public class TransportDA {
 		statement.setString(2, bienso);
 		statement.setString(3, loai);
 		statement.setTime(4, timeIn);
-
-		int result = statement.executeUpdate();
-
-		return result > 0;
-	}
-
-	public boolean deleteTrans(int id) throws SQLException {
-
-		String sql = "DELETE FROM transport where id = ?";
-		PreparedStatement statement = con.prepareStatement(sql);
-		statement.setInt(1, id);
 
 		int result = statement.executeUpdate();
 
@@ -81,6 +81,29 @@ public class TransportDA {
 		return result >0;
 		
 	}
+	
+	public ResultSet getTimeIn(int id) throws SQLException {
+		String sql = "SELECT time_in FROM transport WHERE transport.id = ?";
+		PreparedStatement statement = con.prepareStatement(sql);
+		statement.setInt(1, id);
+		
+		ResultSet rs = statement.executeQuery();
+		
+		return rs;
+		
+	}
+	
+	/*public boolean setTotal(int total, int id) throws SQLException {
+		String sql = "UPDATE transport SET total = ? WHERE transport.id = ?";
+		PreparedStatement statement = con.prepareStatement(sql);
+		statement.setInt(1, total);
+		statement.setInt(2, id);
+		
+		int result = statement.executeUpdate();
+		
+		return result >0;
+	}*/
 
+	
 	// ....
 }

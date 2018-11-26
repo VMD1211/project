@@ -24,24 +24,26 @@ import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class UserFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	private JLabel search;
 	private JButton btnDelete;
 	private JButton btnAdd;
 	private DefaultTableModel model;
 	private TransportB transportB;
 	private MainFrame main;
 	private JTextField searchtxt;
+	private JButton btnSearch;
 
 	public void initModel() throws SQLException{
 		model = transportB.getAllTrans();
 		table.setModel(model);
 	}
-	
 	/**
 	 * Create the frame.
 	 */
@@ -50,7 +52,7 @@ public class UserFrame extends JFrame {
 		transportB = new TransportB();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 605, 338);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -80,7 +82,6 @@ public class UserFrame extends JFrame {
 				carIn.setVisible(true);
 			}
 		});
-		panel.add(btnAdd);
 		
 		btnDelete = new JButton("Xe ra");
 		btnDelete.addActionListener(new ActionListener() {
@@ -89,15 +90,39 @@ public class UserFrame extends JFrame {
 				carOut.setVisible(true);
 			}
 		});
-		panel.add(btnDelete);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnDelete, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+						.addComponent(btnAdd, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(4)
+					.addComponent(btnAdd)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnDelete)
+					.addContainerGap(162, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.NORTH);
-
-		search = new JLabel("Tim kiem");
-		search.setFont(new Font("Tahoma", Font.BOLD, 15));
-		search.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(search);
+		
+		btnSearch = new JButton("Search");
+		btnSearch.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+		});
+		panel_1.add(btnSearch);
 		
 		searchtxt = new JTextField();
 		panel_1.add(searchtxt);
@@ -106,5 +131,4 @@ public class UserFrame extends JFrame {
 
 				
 	}
-
 }

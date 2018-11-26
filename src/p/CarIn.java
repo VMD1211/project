@@ -105,7 +105,8 @@ public class CarIn extends JDialog {
 				trans.setBienso(textField_2.getText());
 				trans.setLoai(textField_3.getText());
 				trans.setTimeIn(new java.sql.Time(date.getTime()));
-
+				//System.currentTimeMillis();
+				
 				b = new TransportB();
 				try {
 					b.addTrans(trans);
