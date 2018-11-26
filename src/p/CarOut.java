@@ -72,6 +72,21 @@ public class CarOut extends JDialog {
 				try {
 					b.setTimeOut(trans);
 					b.getTimeIn(trans);
+					String timeOut = String.valueOf(trans.getTimeOut());
+					SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+					Date d1 = null;
+					Date d2 = null;
+					try {
+						d1 = format.parse(b.getTimeIn(trans));
+						d2 = format.parse(timeOut);
+						long diff = d2.getTime() - d1.getTime();
+						long transport1 = diff / (60 * 1000);
+						System.out.println(transport1);
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block

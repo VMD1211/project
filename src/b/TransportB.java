@@ -65,10 +65,10 @@ public class TransportB {
 		return transpost;
 	}
 	
-	public Transpost getTimeIn(Transpost trans) throws SQLException {
+	public String getTimeIn(Transpost trans) throws SQLException {
 		String time_in = da.getTimeIn(trans.getId());
 		System.out.println("Time_in : " + time_in);
-		return trans;
+		return time_in;
 	}
 
 }
