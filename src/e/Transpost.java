@@ -8,29 +8,18 @@ public class Transpost {
 	private String bienso;
 	private String loai;
 	private Time timein, timeout;
-	private int total;
 
 	public Transpost() {
 
 	}
 
-	public Transpost(int id, String name, String bienso, String loai, Time timein, Time timeout, int total) {
+	public Transpost(int id, String name, String bienso, String loai, Time timein) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.bienso = bienso;
 		this.loai = loai;
 		this.timein = timein;
-		this.timeout = timeout;
-		this.total = total;
-	}
-
-	public int getTotal() {
-		return total;
-	}
-
-	public void setTotal(int total) {
-		this.total = total;
 	}
 
 	public int getId() {

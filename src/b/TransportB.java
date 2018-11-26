@@ -1,6 +1,5 @@
 package b;
 
-import java.util.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -29,8 +28,6 @@ public class TransportB {
 		model.addColumn("Bien So");
 		model.addColumn("Loai");
 		model.addColumn("TimeIn");
-		model.addColumn("TimeOut");
-		model.addColumn("Tong tien");
 		return model;
 	}
 
@@ -39,35 +36,39 @@ public class TransportB {
 		model();
 		
 		for (Transpost transport : list) {
-			String[] cells = new String[6];
+			String[] cells = new String[5];
 			cells[0] = String.valueOf(transport.getId());
 			cells[1] = transport.getName();
 			cells[2] = transport.getBienso();
 			cells[3] = transport.getLoai();
 			cells[4] = String.valueOf(transport.getTimeIn());
-			cells[5] = String.valueOf(transport.getTimeOut());
 			model.addRow(cells);
 		}
 
 		return model;
 	}
-	
+
 	public Transpost addTrans(Transpost transpost) throws SQLException {
 		da.insertTrans(transpost.getId(), transpost.getName(), transpost.getBienso(), transpost.getLoai(),
 				transpost.getTimeIn());
 		return transpost;
 
 	}
+
+	public Transpost deleteTrans(Transpost transpost) throws SQLException {
+		da.deleteTrans(transpost.getId());
+		return transpost;
+	}
 	
 	public Transpost setTimeOut(Transpost transpost) throws SQLException {
 		da.setTimeOut(transpost.getTimeOut(), transpost.getId());
 		return transpost;
 	}
-
+	
 	public Transpost getTimeIn(Transpost trans) throws SQLException {
-		da.getTimeIn(trans.getId());
+		String time_in = da.getTimeIn(trans.getId());
+		System.out.println("Time_in : " + time_in);
 		return trans;
 	}
-	
-}
 
+}

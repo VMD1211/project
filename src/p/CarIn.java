@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import b.AreaB;
 import b.TransportB;
 import e.Transpost;
 
@@ -39,8 +40,9 @@ public class CarIn extends JDialog {
 	private UserFrame user;
 	private Transpost trans;
 	private TransportB b;
+	private AreaB aB;
 	private JList<String> list;
-	private String[] type = { "O to", " xe may", "xe dap" };
+	private String[] type = { "Car", "MotorBike", "Bike" };
 
 	/**
 	 * Create the application.
@@ -95,7 +97,6 @@ public class CarIn extends JDialog {
 				textField_3.setText(type);
 			}
 		});
-
 		finish = new JButton("FINISH");
 		finish.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -105,8 +106,7 @@ public class CarIn extends JDialog {
 				trans.setBienso(textField_2.getText());
 				trans.setLoai(textField_3.getText());
 				trans.setTimeIn(new java.sql.Time(date.getTime()));
-				//System.currentTimeMillis();
-				
+
 				b = new TransportB();
 				try {
 					b.addTrans(trans);
@@ -120,6 +120,12 @@ public class CarIn extends JDialog {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				aB = new AreaB();
+				
+				
+				
+				
+				
 				JOptionPane.showMessageDialog(CarIn.this, "Da add thanh cong");
 
 				CarIn.this.setVisible(false);

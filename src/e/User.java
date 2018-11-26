@@ -6,9 +6,6 @@ public class User {
 	private String password;
 	private String fullname;
 
-	public User() {
-		
-	}
 	
 	public User(int id, String username, String password, String fullname) {
 		super();

@@ -18,6 +18,7 @@ import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
@@ -62,9 +63,16 @@ public class CarOut extends JDialog {
 				trans.setId(Integer.parseInt(textField.getText()));
 				trans.setTimeOut(new java.sql.Time(date.getTime()));
 				
+				
+				
+
 				b = new TransportB();
+				
+				
 				try {
 					b.setTimeOut(trans);
+					b.getTimeIn(trans);
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -75,28 +83,9 @@ public class CarOut extends JDialog {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
-				try {
-					String TimeStart = String.valueOf(trans.getTimeIn()); //TODO: Để ý chỗ getTimeIn này nó bị null viết hộ t hàm để lấy cái time_in rồi cho nó nhận vào cái trans.getTimeIn() này là ra
-					String TimeEnd = String.valueOf(trans.getTimeOut());
-					SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-					System.out.println(trans.getBienso());
-					Date d1 = null;
-					Date d2 = null;
-					try {
-						d1 = format.parse(TimeStart);
-						d2 = format.parse(TimeEnd);
-					}catch(Exception e3){
-						
-					}
-					long diff = d2.getTime() - d1.getTime();
-					long transport1 = diff / (60 * 1000);
-					
-					JOptionPane.showMessageDialog(CarOut.this, (transport1));
-				}catch(Exception e3){
-					e3.printStackTrace();
-				}
-					JOptionPane.showMessageDialog(CarOut.this, "car out");
-					CarOut.this.setVisible(false);
+				JOptionPane.showMessageDialog(CarOut.this, "Xe da out");
+				CarOut.this.setVisible(false);
+				
 			}
 		});
 		btnFinish.setBounds(229, 227, 89, 23);
