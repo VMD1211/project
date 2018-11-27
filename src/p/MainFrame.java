@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class MainFrame extends JFrame {
 
@@ -69,6 +70,7 @@ public class MainFrame extends JFrame {
 		panel.add(lblPassword);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.setIcon(new ImageIcon("D:\\video\\icons8-login-24.png"));
 		btnLogin.addActionListener(new ActionListener() {
 			
 			@Override

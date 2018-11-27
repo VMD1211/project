@@ -99,6 +99,51 @@ public class TransportDA {
 		
 		
 	}
+	public String getType(int id) throws SQLException {
+		String sql = "SELECT loai FROM transport WHERE id = ?";
+		Statement stmt = con.createStatement();
+		PreparedStatement statement = con.prepareStatement(sql);
+		statement.setInt(1,id);
+		ResultSet rs = statement.executeQuery();
+		String loai = "";
+		if(rs.next())
+		{
+			loai = rs.getString("loai");	
+		}
+		
+		return loai;
+		
+	}
+	public String getName(int id) throws SQLException {
+		String sql = "SELECT name FROM transport WHERE id = ?";
+		Statement stmt = con.createStatement();
+		PreparedStatement statement = con.prepareStatement(sql);
+		statement.setInt(1,id);
+		ResultSet rs = statement.executeQuery();
+		String name = "";
+		if(rs.next())
+		{
+			name = rs.getString("name");	
+		}
+		
+		return name;
+		
+	}
+	public String getBienSo(int id) throws SQLException {
+		String sql = "SELECT bienso FROM transport WHERE id = ?";
+		Statement stmt = con.createStatement();
+		PreparedStatement statement = con.prepareStatement(sql);
+		statement.setInt(1,id);
+		ResultSet rs = statement.executeQuery();
+		String bienso = "";
+		if(rs.next())
+		{
+			bienso = rs.getString("bienso");	
+		}
+		
+		return bienso;
+		
+	}
 	
 	
 	

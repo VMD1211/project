@@ -17,6 +17,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,6 +35,8 @@ public class CarOut extends JDialog {
 	private Transpost trans;
 	private TransportB b;
 	private JLabel lblNhapId;
+	private long tongTime;
+	private double tongTien;
 
 	public CarOut(UserFrame user) {
 		super(user, "Xe ra", true);
@@ -55,23 +61,18 @@ public class CarOut extends JDialog {
 		panel1.add(textField);
 		textField.setColumns(10);
 
-		JButton btnFinish = new JButton("Finish");
+		JButton btnFinish = new JButton("Ticket");
 		btnFinish.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Date date = new Date();
 				trans = new Transpost();
 				trans.setId(Integer.parseInt(textField.getText()));
 				trans.setTimeOut(new java.sql.Time(date.getTime()));
-				
-				
-				
 
 				b = new TransportB();
-				
-				
+
 				try {
 					b.setTimeOut(trans);
-					b.getTimeIn(trans);
 					String timeOut = String.valueOf(trans.getTimeOut());
 					SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
 					Date d1 = null;
@@ -80,17 +81,72 @@ public class CarOut extends JDialog {
 						d1 = format.parse(b.getTimeIn(trans));
 						d2 = format.parse(timeOut);
 						long diff = d2.getTime() - d1.getTime();
-						long transport1 = diff / (60 * 1000);
-						System.out.println(transport1);
+
+						if (diff / (60 * 60 * 1000) < 1) {
+							tongTime = diff / (60 * 1000);
+							tongTien = 3000;
+
+						} else {
+							tongTime = diff / (60 * 60 * 1000);
+							if (b.getType(trans).equals("Car")) {
+								tongTien = tongTime * 5000;
+							} else if (b.getType(trans).equals("MotorBike")) {
+								tongTien = tongTime * 3000;
+							} else {
+								tongTien = tongTime * 1000;
+							}
+
+						}
+
 					} catch (ParseException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
-					
+
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				}
+
+				// in ticket
+
+				try {
+					FileOutputStream f = new FileOutputStream("C:\\Users\\Administrator\\Desktop\\ticket.txt");
+					PrintWriter output = new PrintWriter(f);
+					output.println(String.valueOf("Ngay:" + " " + java.time.LocalDate.now()));
+					output.println(String.valueOf("So id:" + " " + trans.getId()));
+					output.println("Name:" + " " + b.getName(trans));
+					output.println("Bien so:" + " " + b.getBienSo(trans));
+					output.println("Loai:" + " " + b.getType(trans));
+					output.println("Time In:" + " " + b.getTimeIn(trans));
+					output.println("Time Out:" + " " + trans.getTimeOut());
+					output.println("Tong tien:" + " " + tongTien);
+					output.close();
+				} catch (FileNotFoundException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+
+			}
+		});
+		btnFinish.setBounds(229, 227, 89, 23);
+		contentPanel.add(btnFinish, BorderLayout.CENTER);
+
+		JButton btnTicket = new JButton("Finish");
+		btnTicket.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				trans = new Transpost();
+				trans.setId(Integer.parseInt(textField.getText()));
+				b = new TransportB();
+				try {
+					b.deleteTrans(trans);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 				try {
 					user.initModel();
@@ -100,11 +156,10 @@ public class CarOut extends JDialog {
 				}
 				JOptionPane.showMessageDialog(CarOut.this, "Xe da out");
 				CarOut.this.setVisible(false);
-				
+
 			}
 		});
-		btnFinish.setBounds(229, 227, 89, 23);
-		contentPanel.add(btnFinish, BorderLayout.SOUTH);
+		contentPanel.add(btnTicket, BorderLayout.SOUTH);
 
 	}
 }

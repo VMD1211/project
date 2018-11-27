@@ -25,6 +25,8 @@ import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class UserFrame extends JFrame {
 
@@ -56,6 +58,7 @@ public class UserFrame extends JFrame {
 		setBounds(100, 100, 450, 300);
 
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.ORANGE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -74,9 +77,11 @@ public class UserFrame extends JFrame {
 		}
 
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.ORANGE);
 		contentPane.add(panel, BorderLayout.EAST);
 
 		btnAdd = new JButton("Xe vao");
+		btnAdd.setIcon(new ImageIcon("D:\\video\\icons8-car-26.png"));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				CarIn carIn = new CarIn(UserFrame.this);
@@ -86,6 +91,7 @@ public class UserFrame extends JFrame {
 		panel.add(btnAdd);
 
 		btnDelete = new JButton("Xe ra");
+		btnDelete.setIcon(new ImageIcon("D:\\video\\icons8-sedan-26.png"));
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				CarOut carOut = new CarOut(UserFrame.this);
@@ -95,6 +101,7 @@ public class UserFrame extends JFrame {
 		panel.add(btnDelete);
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.ORANGE);
 		contentPane.add(panel_1, BorderLayout.NORTH);
 
 		search = new JLabel("Tim kiem");
@@ -107,6 +114,7 @@ public class UserFrame extends JFrame {
 		searchtxt.setColumns(30);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.ORANGE);
 		contentPane.add(panel_2, BorderLayout.SOUTH);
 		
 		area = new Area();

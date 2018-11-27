@@ -34,7 +34,7 @@ public class TransportB {
 	public DefaultTableModel getAllTrans() throws SQLException {
 		list = da.getAll();
 		model();
-		
+
 		for (Transpost transport : list) {
 			String[] cells = new String[5];
 			cells[0] = String.valueOf(transport.getId());
@@ -59,16 +59,27 @@ public class TransportB {
 		da.deleteTrans(transpost.getId());
 		return transpost;
 	}
-	
+
 	public Transpost setTimeOut(Transpost transpost) throws SQLException {
 		da.setTimeOut(transpost.getTimeOut(), transpost.getId());
 		return transpost;
 	}
-	
+
 	public String getTimeIn(Transpost trans) throws SQLException {
 		String time_in = da.getTimeIn(trans.getId());
-		System.out.println("Time_in : " + time_in);
 		return time_in;
+	}
+	public String getType(Transpost trans) throws SQLException {
+		String loai = da.getType(trans.getId());
+		return loai;
+	}
+	public String getName(Transpost trans) throws SQLException {
+		String name = da.getName(trans.getId());
+		return name;
+	}
+	public String getBienSo(Transpost trans) throws SQLException {
+		String bienso = da.getBienSo(trans.getId());
+		return bienso;
 	}
 
 }

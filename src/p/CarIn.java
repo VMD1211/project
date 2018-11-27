@@ -121,11 +121,7 @@ public class CarIn extends JDialog {
 					e.printStackTrace();
 				}
 				aB = new AreaB();
-				
-				
-				
-				
-				
+
 				JOptionPane.showMessageDialog(CarIn.this, "Da add thanh cong");
 
 				CarIn.this.setVisible(false);
