@@ -10,7 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import b.AreaB;
 import b.TransportB;
+import e.Area;
 import e.Transpost;
 
 import javax.swing.JButton;
@@ -37,6 +39,7 @@ public class CarOut extends JDialog {
 	private JLabel lblNhapId;
 	private long tongTime;
 	private double tongTien;
+	private AreaB aB;
 
 	public CarOut(UserFrame user) {
 		super(user, "Xe ra", true);
@@ -130,6 +133,8 @@ public class CarOut extends JDialog {
 					e1.printStackTrace();
 				}
 				
+				
+				
 
 			}
 		});
@@ -143,6 +148,30 @@ public class CarOut extends JDialog {
 				trans.setId(Integer.parseInt(textField.getText()));
 				b = new TransportB();
 				try {
+					
+					//them cho
+					Area car = new Area();
+					car.setArea("Car");
+					Area motor = new Area();
+					motor.setArea("MotorBike");
+					Area bike= new Area();
+					bike.setArea("Bike");
+					aB = new AreaB();
+					if(b.getType(trans).equals("Car")) {
+						aB.addQuantity(car);
+					}else if(b.getType(trans).equals("MotorBike")) {
+						aB.addQuantity(motor);
+					}else {
+						aB.addQuantity(bike);
+					}
+					
+					user.initQuantity(car, motor, bike);
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
 					b.deleteTrans(trans);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -154,6 +183,8 @@ public class CarOut extends JDialog {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
+				
+				
 				JOptionPane.showMessageDialog(CarOut.this, "Xe da out");
 				CarOut.this.setVisible(false);
 

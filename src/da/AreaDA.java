@@ -25,55 +25,37 @@ public class AreaDA {
 		}
 	}
 
-	public int setQuantityCar() throws SQLException {
-		int x=0;
-		String sql = "SELECT quantity FROM area WHERE area ='Car'";
+	public int getQuantity(String area) throws SQLException {
+		String sql = "SELECT quantity FROM area WHERE area = ?";
 		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(sql);
-
-		while (rs.next()) {
-			Area area =  new Area();
-			x = rs.getInt(1);
-			area.setQuantityMotor(x);
+		PreparedStatement statement = con.prepareStatement(sql);
+		statement.setString(1, area);
+		ResultSet rs = statement.executeQuery();
+		int quantity = 0;
+		if (rs.next()) {
+			quantity = rs.getInt(1);
 		}
-		
-		return x;
+
+		return quantity;
+
 	}
 
-	public int setQuantityMotor() throws SQLException {
-		int x=0;
-		String sql = "SELECT quantity FROM area WHERE area ='MotorBike'";
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(sql);
-
-		while (rs.next()) {
-			Area area =  new Area();
-			x = rs.getInt(1);
-			area.setQuantityMotor(x);
-		}
-		return x;
-	}
-
-	public int setQuantityBike() throws SQLException {
-		int x=0;
-		String sql = "SELECT quantity FROM area WHERE area ='Bike'";
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(sql);
-
-		while (rs.next()) {
-			Area area = new Area();
-			x = rs.getInt(1);
-			area.setQuantityBike(x);
-		}
-		return x;
-	}
-	
-	public boolean deleteQuan(String name) throws SQLException {
+	public boolean deleteQuan(String area) throws SQLException {
 
 		String sql = "UPDATE area SET quantity = quantity -1 WHERE area = ?";
 		PreparedStatement statement = con.prepareStatement(sql);
-		statement.setString(1, name);
-		
+		statement.setString(1, area);
+
+		int result = statement.executeUpdate();
+
+		return result > 0;
+	}
+
+	public boolean addQuan(String area) throws SQLException {
+
+		String sql = "UPDATE area SET quantity = quantity +1 WHERE area = ?";
+		PreparedStatement statement = con.prepareStatement(sql);
+		statement.setString(1, area);
 
 		int result = statement.executeUpdate();
 

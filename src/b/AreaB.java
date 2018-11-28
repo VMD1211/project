@@ -12,29 +12,22 @@ import e.Transpost;
 
 public class AreaB {
 	private AreaDA da;
-	private List<Area> list;
+	
 
 	public AreaB() {
 		da = new AreaDA();
 	}
 
-	public int getQuantityCar() throws SQLException {
-		int x = da.setQuantityCar();
-		return x;
+	public int getQuantity(Area area) throws SQLException {
+		int quantity = da.getQuantity(area.getArea());
+		return quantity;
 	}
-
-	public int getQuantityMotor() throws SQLException {
-		int x = da.setQuantityMotor();
-		return x;
+	public Area deleteQuantity(Area area) throws SQLException {
+		da.deleteQuan(area.getArea());
+		return area;
 	}
-
-	public int getQuantityBike() throws SQLException {
-		int x = da.setQuantityBike();
-		return x;
-	}
-	public Area deleteQuanCar(Area area) throws SQLException {
-		da.deleteQuan("Car");
-		area.setQuantityCar(area.getQuantityCar()-1);
+	public Area addQuantity(Area area) throws SQLException {
+		da.addQuan(area.getArea());
 		return area;
 	}
 

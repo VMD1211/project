@@ -71,6 +71,7 @@ public class TransportB {
 	}
 	public String getType(Transpost trans) throws SQLException {
 		String loai = da.getType(trans.getId());
+		
 		return loai;
 	}
 	public String getName(Transpost trans) throws SQLException {

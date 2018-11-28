@@ -32,12 +32,13 @@ public class UserFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	private JLabel search;
+	private JLabel search,status,quantity;
 	private JButton btnDelete;
 	private JButton btnAdd;
 	private DefaultTableModel model;
 	private TransportB transportB;
-	private Area area;
+	private AreaB b;
+	
 
 	private MainFrame main;
 	private JTextField searchtxt;
@@ -46,6 +47,18 @@ public class UserFrame extends JFrame {
 		model = transportB.getAllTrans();
 		table.setModel(model);
 	}
+	public void initQuantity(Area car,Area motor, Area bike) {
+		try {
+			quantity.setText("Car: "+" "+String.valueOf(b.getQuantity(car)+"-----"+"MotorBike:"+String.valueOf(b.getQuantity(motor))+"-----"+"Bike:"+String.valueOf(b.getQuantity(bike))));
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
 
 	/**
 	 * Create the frame.
@@ -53,6 +66,7 @@ public class UserFrame extends JFrame {
 	public UserFrame(MainFrame main) {
 		this.main = main;
 		transportB = new TransportB();
+		
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -117,10 +131,19 @@ public class UserFrame extends JFrame {
 		panel_2.setBackground(Color.ORANGE);
 		contentPane.add(panel_2, BorderLayout.SOUTH);
 		
-		area = new Area();
+		//Quantity
+		Area car = new Area();
+		car.setArea("Car");
+		Area motor = new Area();
+		motor.setArea("MotorBike");
+		Area bike = new Area();
+		bike.setArea("Bike");
+		quantity = new JLabel();
+		b = new AreaB();
+		initQuantity(car, motor,bike);
+		panel_2.add(quantity);
 		
-		JLabel label = new JLabel("Car:"+area.getQuantityCar()+"----"+"Motor:"+area.getQuantityMotor()+"----"+"Bike:"+ area.getQuantityBike());
-		panel_2.add(label);
+		
 		
 		
 

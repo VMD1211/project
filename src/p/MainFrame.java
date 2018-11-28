@@ -26,6 +26,7 @@ public class MainFrame extends JFrame {
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private JLabel mess;
+	
 
 	
 
@@ -83,6 +84,7 @@ public class MainFrame extends JFrame {
 						UserFrame userFrame = new UserFrame(MainFrame.this);
 						userFrame.setVisible(true);
 						MainFrame.this.setVisible(false);
+						
 						
 					}
 					else {

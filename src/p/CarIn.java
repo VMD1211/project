@@ -19,6 +19,7 @@ import javax.swing.event.ListSelectionListener;
 
 import b.AreaB;
 import b.TransportB;
+import e.Area;
 import e.Transpost;
 
 import javax.swing.JButton;
@@ -120,7 +121,37 @@ public class CarIn extends JDialog {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				Area car = new Area();
+				car.setArea("Car");
+				Area motor = new Area();
+				motor.setArea("MotorBike");
+				Area bike= new Area();
+				bike.setArea("Bike");
 				aB = new AreaB();
+				if(textField_3.getText().equals("Car")) {
+					try {
+						aB.deleteQuantity(car);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}else if(textField_3.getText().equals("MotorBike")) {
+					try {
+						aB.deleteQuantity(motor);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}else {
+					try {
+						aB.deleteQuantity(bike);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				user.initQuantity(car,motor,bike);
+				
 
 				JOptionPane.showMessageDialog(CarIn.this, "Da add thanh cong");
 
