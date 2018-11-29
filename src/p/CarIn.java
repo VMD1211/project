@@ -31,6 +31,9 @@ import java.sql.Time;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JComboBox;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class CarIn extends JDialog {
 
@@ -51,41 +54,53 @@ public class CarIn extends JDialog {
 
 	public CarIn(UserFrame user) {
 		super(user, "Xe vao", true);
+		setTitle("CHECK IN");
 		this.user = user;
 
 		setAlwaysOnTop(true);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 452, 305);
 
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(new BorderLayout(0, 0));
+		contentPanel.setLayout(null);
 
 		JPanel panel = new JPanel();
-		contentPanel.add(panel, BorderLayout.CENTER);
+		panel.setBounds(0, 0, 436, 266);
+		contentPanel.add(panel);
+		panel.setLayout(null);
 
 		name = new JLabel("Name");
+		name.setForeground(new Color(255, 255, 0));
+		name.setBounds(23, 8, 47, 14);
 		panel.add(name);
 
 		textField_1 = new JTextField();
+		textField_1.setBounds(70, 5, 118, 20);
 		textField_1.setColumns(14);
 		panel.add(textField_1);
 
-		bienso = new JLabel("Bien So");
+		bienso = new JLabel("License plate");
+		bienso.setForeground(new Color(255, 255, 0));
+		bienso.setBounds(208, 8, 78, 14);
 		panel.add(bienso);
 
 		textField_2 = new JTextField();
+		textField_2.setBounds(296, 5, 118, 20);
 		textField_2.setColumns(14);
 		panel.add(textField_2);
 
-		loai = new JLabel("Loai");
+		loai = new JLabel("Type");
+		loai.setForeground(new Color(255, 255, 0));
+		loai.setBounds(23, 33, 39, 24);
 		panel.add(loai);
 
 		textField_3 = new JTextField();
+		textField_3.setBounds(198, 35, 118, 20);
 		textField_3.setColumns(14);
-		panel.add(textField_3);
+		//panel.add(textField_3);
 
-		list = new JList<String>(type);
+		/*list = new JList<String>(type);
 		panel.add(list);
 
 		list.addListSelectionListener(new ListSelectionListener() {
@@ -97,8 +112,9 @@ public class CarIn extends JDialog {
 				type = list.getSelectedValue();
 				textField_3.setText(type);
 			}
-		});
+		});*/
 		finish = new JButton("FINISH");
+		finish.setBounds(336, 232, 90, 23);
 		finish.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Date date = new Date();
@@ -161,7 +177,25 @@ public class CarIn extends JDialog {
 
 		});
 		panel.add(finish);
+		
+		JComboBox comboBox = new JComboBox(type);
+		comboBox.setBounds(70, 34, 118, 22);
+		comboBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				String type = "";
+				type = (String) comboBox.getSelectedItem();
+				textField_3.setText(type);
+			}
+		});
+		panel.add(comboBox);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("C:\\Users\\Admin\\Pictures\\glasgow-prestwick-airport-parking - Copy.jpg"));
+		label.setBounds(0, 0, 436, 266);
+		panel.add(label);
 
 	}
-
 }

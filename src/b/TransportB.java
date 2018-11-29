@@ -25,8 +25,8 @@ public class TransportB {
 		model = new DefaultTableModel();
 		model.addColumn("ID");
 		model.addColumn("Name");
-		model.addColumn("Bien So");
-		model.addColumn("Loai");
+		model.addColumn("License plate");
+		model.addColumn("Type");
 		model.addColumn("TimeIn");
 		return model;
 	}

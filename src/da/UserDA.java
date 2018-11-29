@@ -27,4 +27,18 @@ public class UserDA {
 		return false;
 
 	}
+	
+	public boolean insertUser(String username, String password, String name) throws ClassNotFoundException,SQLException {		
+		String sql ="INSERT INTO employee (username, password, name) VALUES (?,?,?)";
+		PreparedStatement stm = ConnectionUtil.getConnection().prepareStatement(sql);
+		//stm.setInt(1, id_em);
+		stm.setString(1, username);
+		stm.setString(2, password);
+		stm.setString(3, name);
+		
+		int result = stm.executeUpdate();
+		
+		return result >0;
+	}
+	
 }

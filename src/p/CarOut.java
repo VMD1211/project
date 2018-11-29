@@ -28,6 +28,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.FlowLayout;
 
 public class CarOut extends JDialog {
 
@@ -43,24 +46,25 @@ public class CarOut extends JDialog {
 
 	public CarOut(UserFrame user) {
 		super(user, "Xe ra", true);
+		setTitle("CHECK OUT");
 		this.user = user;
 		setAlwaysOnTop(true);
 
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 90);
 
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(new BorderLayout(0, 0));
+		contentPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JPanel panel1 = new JPanel();
-		contentPanel.add(panel1, BorderLayout.NORTH);
-		lblNhapId = new JLabel("Nhap ID");
-		lblNhapId.setBounds(85, 11, 46, 14);
+		contentPanel.add(panel1);
+		panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		lblNhapId = new JLabel("ID");
+		lblNhapId.setHorizontalAlignment(SwingConstants.CENTER);
 		panel1.add(lblNhapId);
 
 		textField = new JTextField();
-		textField.setBounds(141, 8, 186, 20);
 		panel1.add(textField);
 		textField.setColumns(10);
 
@@ -114,7 +118,7 @@ public class CarOut extends JDialog {
 				// in ticket
 
 				try {
-					FileOutputStream f = new FileOutputStream("C:\\Users\\Administrator\\Desktop\\ticket.txt");
+					FileOutputStream f = new FileOutputStream("C:\\Users\\Admin\\Desktop\\ticket.txt");
 					PrintWriter output = new PrintWriter(f);
 					output.println(String.valueOf("Ngay:" + " " + java.time.LocalDate.now()));
 					output.println(String.valueOf("So id:" + " " + trans.getId()));
@@ -138,8 +142,7 @@ public class CarOut extends JDialog {
 
 			}
 		});
-		btnFinish.setBounds(229, 227, 89, 23);
-		contentPanel.add(btnFinish, BorderLayout.CENTER);
+		contentPanel.add(btnFinish);
 
 		JButton btnTicket = new JButton("Finish");
 		btnTicket.addActionListener(new ActionListener() {
@@ -190,7 +193,7 @@ public class CarOut extends JDialog {
 
 			}
 		});
-		contentPanel.add(btnTicket, BorderLayout.SOUTH);
+		contentPanel.add(btnTicket);
 
 	}
 }

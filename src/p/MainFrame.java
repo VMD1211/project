@@ -37,41 +37,39 @@ public class MainFrame extends JFrame {
 
 	
 	public MainFrame() {
+		setTitle("CAR MANAGER");
 		
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 449, 248);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JLabel lblNewLabel = new JLabel("Car Manager");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		getContentPane().add(lblNewLabel, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JLabel lblUsername = new JLabel("Username ");
+		lblUsername.setForeground(new Color(255, 255, 0));
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblUsername.setBounds(64, 25, 87, 39);
+		lblUsername.setBounds(69, 55, 87, 39);
 		panel.add(lblUsername);
 		
 		mess = new JLabel();
 		mess.setHorizontalAlignment(SwingConstants.CENTER);
-		mess.setBounds(127, 148, 210, 14);
+		mess.setBounds(127, 162, 210, 14);
 		panel.add(mess);
 		
 		textField = new JTextField();
-		textField.setBounds(166, 36, 139, 20);
+		textField.setBounds(166, 66, 139, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("Password ");
+		lblPassword.setForeground(new Color(255, 255, 0));
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblPassword.setBounds(64, 64, 87, 39);
+		lblPassword.setBounds(69, 86, 87, 39);
 		panel.add(lblPassword);
 		
 		JButton btnLogin = new JButton("Login");
-		btnLogin.setIcon(new ImageIcon("D:\\video\\icons8-login-24.png"));
+		btnLogin.setIcon(new ImageIcon("C:\\Users\\Admin\\Downloads\\icons8-password-15.png"));
 		btnLogin.addActionListener(new ActionListener() {
 			
 			@Override
@@ -102,25 +100,17 @@ public class MainFrame extends JFrame {
 				
 			}
 		});
-		btnLogin.setBounds(127, 114, 89, 23);
+		btnLogin.setBounds(190, 128, 89, 23);
 		panel.add(btnLogin);
 		
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
-		btnCancel.setBounds(248, 114, 89, 23);
-		panel.add(btnCancel);
-		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(166, 75, 139, 20);
+		passwordField.setBounds(166, 97, 139, 20);
 		panel.add(passwordField);
 		
 		JLabel lblIf = new JLabel("Create new Employee");
+		lblIf.setForeground(new Color(255, 255, 0));
 		lblIf.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblIf.setBounds(10, 189, 253, 20);
+		lblIf.setBounds(10, 173, 210, 20);
 		panel.add(lblIf);
 		
 		JButton btnRegister = new JButton("Register");
@@ -131,13 +121,14 @@ public class MainFrame extends JFrame {
 				
 			}
 		});
-		btnRegister.setBounds(248, 189, 89, 23);
+		btnRegister.setBounds(334, 173, 89, 23);
 		panel.add(btnRegister);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("C:\\Users\\Admin\\Pictures\\exige02.jpg"));
+		label.setBounds(0, 0, 434, 209);
+		panel.add(label);
 		
 		
 	}
-
-
-
-	
 }

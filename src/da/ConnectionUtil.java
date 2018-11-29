@@ -8,9 +8,9 @@ public class ConnectionUtil {
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		if (con == null) {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://127.0.0.1/car_manager_2";
+			String url = "jdbc:mysql://localhost/car_manager";
 			String user = "root";
-			String password = "12345678";
+			String password = "123456";
 			con = DriverManager.getConnection(url, user, password);
 		}
 		return con;
